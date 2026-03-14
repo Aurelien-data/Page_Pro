@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurélien Prat — Consultant Business Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&family=Lato:ital,wght@0,300;0,400;0,500;1,300&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* ── APBI Brand Colors ── */
+      --petrol:        #0A5275;   /* fond principal, bannières, titres */
+      --petrol-dark:   #073d57;   /* hover fond sombre */
+      --petrol-light:  #0e6a96;   /* variante claire */
+      --blue-soft:     #9CC3D5;   /* éléments graphiques, data */
+      --blue-bg:       #e8f3f8;   /* fonds section clairs */
+      --orange:        #ED7D31;   /* accent dynamique */
+      --orange-light:  #faeadc;   /* fond accent léger */
+      --yellow:        #F2C811;   /* CTA, boutons, accents visuels */
+      --yellow-light:  #fdf6d0;   /* fond jaune léger */
+      --grey-text:     #A4A1A1;   /* texte principal sur fond clair */
+      --grey-light:    #C6C1C1;   /* texte secondaire, slogan */
+      --grey-rule:     #dedad9;   /* séparateurs */
+      --white:         #ffffff;
+      --off-white:     #f5f8fa;   /* fond page */
+
+      /* Aliases sémantiques */
+      --ink:           var(--petrol);
+      --ink-light:     var(--grey-text);
+      --ink-xlight:    var(--grey-light);
+      --paper:         var(--off-white);
+      --paper-warm:    var(--blue-bg);
+      --accent:        var(--orange);
+      --accent-cta:    var(--yellow);
+      --accent-light:  var(--orange-light);
+      --rule:          var(--grey-rule);
+
+      /* ── APBI Typography ── */
+      --font-title:  'Montserrat', system-ui, sans-serif;
+      --font-body:   'Lato', system-ui, sans-serif;
+      --font-mono:   'Roboto Mono', monospace;
+
+      /* Legacy aliases */
+      --serif: var(--font-title);
+      --sans:  var(--font-body);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 4rem;
+      background: rgba(10, 82, 117, 0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(156, 195, 213, 0.2);
+    }
+    .nav-logo {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .nav-logo span { color: var(--yellow); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(255,255,255,0.7);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--yellow); }
+    .nav-cta {
+      font-size: 0.8rem; font-weight: 700;
+      padding: 0.5rem 1.25rem;
+      background: var(--yellow); color: var(--petrol);
+      border-radius: 4px; text-decoration: none;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 4rem 6rem 4rem;
+      background: var(--petrol);
+      border-right: none;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--blue-soft);
+      margin-bottom: 2rem; font-family: var(--font-title);
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block;
+      width: 2rem; height: 2px; background: var(--orange);
+    }
+    .hero-title {
+      font-family: var(--font-title);
+      font-weight: 800;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em { font-style: normal; color: var(--yellow); }
+    .hero-subtitle {
+      font-size: 1.05rem; font-weight: 300; color: rgba(255,255,255,0.75);
+      max-width: 420px; line-height: 1.8; margin-bottom: 3rem;
+      font-family: var(--font-body);
+    }
+    .hero-actions { display: flex; gap: 1rem; align-items: center; }
+    .btn-primary {
+      padding: 0.85rem 2rem; background: var(--yellow); color: var(--petrol);
+      font-family: var(--font-title); font-size: 0.8rem; font-weight: 800;
+      border: none; border-radius: 4px; cursor: pointer;
+      text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #ffd426; }
+    .btn-ghost {
+      padding: 0.85rem 2rem; background: transparent; color: var(--white);
+      font-family: var(--font-title); font-size: 0.8rem; font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.3); border-radius: 4px;
+      text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    .hero-right {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 4rem 4rem 4rem 4rem;
+      background: var(--petrol-dark);
+    }
+    .hero-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      border: 1px solid rgba(156, 195, 213, 0.25); border-radius: 8px;
+      overflow: hidden; background: rgba(255,255,255,0.04);
+      margin-bottom: 2rem;
+    }
+    .stat {
+      padding: 2rem;
+      border-right: 1px solid rgba(156, 195, 213, 0.15);
+      border-bottom: 1px solid rgba(156, 195, 213, 0.15);
+    }
+    .stat:nth-child(2), .stat:nth-child(4) { border-right: none; }
+    .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; }
+    .stat-number {
+      font-family: var(--font-title); font-weight: 800; font-size: 2.5rem;
+      color: var(--white); line-height: 1; margin-bottom: 0.25rem;
+    }
+    .stat-number span { color: var(--yellow); }
+    .stat-label { font-size: 0.75rem; color: var(--blue-soft); letter-spacing: 0.06em; text-transform: uppercase; font-family: var(--font-body); }
+    .hero-quote {
+      font-family: var(--font-body); font-style: italic;
+      font-size: 1.05rem; color: rgba(255,255,255,0.6); line-height: 1.7;
+      padding-left: 1.5rem; border-left: 3px solid var(--orange);
+    }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 6rem 4rem; }
+    .section-header { margin-bottom: 4rem; }
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 1rem;
+      font-family: var(--font-title);
+    }
+    .section-eyebrow::before {
+      content: ''; display: block;
+      width: 1.5rem; height: 2px; background: var(--orange);
+    }
+    .section-title {
+      font-family: var(--font-title); font-weight: 800;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      letter-spacing: -0.01em; line-height: 1.1; color: var(--petrol);
+    }
+    .section-title em { font-style: normal; color: var(--orange); }
+    .section-lead {
+      font-size: 1.05rem; color: var(--grey-text); font-weight: 300;
+      max-width: 560px; margin-top: 1rem; line-height: 1.8;
+      font-family: var(--font-body);
+    }
+
+    /* ── RÉALISATIONS ── */
+    #realisations { background: var(--petrol); color: var(--white); }
+    #realisations .section-eyebrow { color: var(--blue-soft); }
+    #realisations .section-eyebrow::before { background: var(--orange); }
+    #realisations .section-title { color: var(--white); }
+    #realisations .section-title em { color: var(--yellow); }
+    #realisations .section-lead { color: rgba(255,255,255,0.6); }
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: rgba(156,195,213,0.15); border-radius: 8px; overflow: hidden;
+      border: 1px solid rgba(156,195,213,0.15);
+    }
+    .project-card {
+      background: rgba(255,255,255,0.04); padding: 2.5rem;
+      transition: background 0.25s;
+      cursor: default;
+    }
+    .project-card:hover { background: rgba(255,255,255,0.08); }
+    .project-sector {
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--orange); font-weight: 700; margin-bottom: 1.25rem;
+      font-family: var(--font-title);
+    }
+    .project-title {
+      font-family: var(--font-title); font-weight: 700; font-size: 1.25rem;
+      color: var(--white); line-height: 1.2; margin-bottom: 1rem;
+    }
+    .project-desc {
+      font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.7;
+      margin-bottom: 1.75rem; font-family: var(--font-body);
+    }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      font-size: 0.7rem; padding: 0.3rem 0.7rem;
+      background: rgba(156,195,213,0.12); color: var(--blue-soft);
+      border-radius: 3px; letter-spacing: 0.04em;
+      font-family: var(--font-mono);
+    }
+    .project-result {
+      margin-top: 1.5rem; padding-top: 1.5rem;
+      border-top: 1px solid rgba(156,195,213,0.15);
+      font-size: 0.85rem; color: rgba(255,255,255,0.7);
+      font-family: var(--font-body);
+    }
+    .project-result strong { color: var(--yellow); }
+
+    /* ── COMPÉTENCES ── */
+    #competences { background: var(--paper); }
+    .skills-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start; }
+    .skills-nav { position: sticky; top: 100px; }
+    .skill-category { margin-bottom: 2.5rem; }
+    .skill-cat-title {
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--orange); font-weight: 700; margin-bottom: 1rem;
+      font-family: var(--font-title);
+    }
+    .skill-list { list-style: none; }
+    .skill-list li {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.6rem 0; border-bottom: 1px solid var(--rule);
+      font-size: 0.925rem; color: var(--grey-text);
+      font-family: var(--font-body);
+    }
+    .skill-list li:last-child { border-bottom: none; }
+    .skill-level { display: flex; gap: 3px; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--rule); }
+    .dot.filled { background: var(--orange); }
+    .skills-highlight {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    .skill-card {
+      padding: 2rem; border: 1px solid var(--rule); border-radius: 6px;
+      background: var(--white); transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .skill-card:hover {
+      border-color: var(--orange);
+      box-shadow: 0 4px 24px rgba(237, 125, 49, 0.08);
+    }
+    .skill-card-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+    .skill-card-title {
+      font-family: var(--font-title); font-weight: 700; font-size: 1.05rem;
+      color: var(--petrol); margin-bottom: 0.5rem;
+    }
+    .skill-card-desc {
+      font-size: 0.875rem; color: var(--grey-text); line-height: 1.65;
+      font-family: var(--font-body);
+    }
+    .skill-card.featured {
+      grid-column: span 2;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+      background: var(--blue-bg); border-color: var(--blue-soft);
+    }
+    .skill-card.featured .skill-card-title { color: var(--petrol); }
+    .skill-card.featured .skill-card-desc { color: var(--grey-text); }
+
+    /* ── PARCOURS ── */
+    #parcours { background: var(--blue-bg); }
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0;
+      width: 2px; background: var(--blue-soft);
+    }
+    .timeline-item {
+      position: relative; margin-bottom: 3.5rem; padding-left: 2rem;
+    }
+    .timeline-dot {
+      position: absolute; left: -2rem; top: 0.35rem;
+      transform: translateX(-50%);
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--blue-bg); border: 2px solid var(--blue-soft);
+    }
+    .timeline-item.current .timeline-dot {
+      background: var(--orange); border-color: var(--orange);
+      box-shadow: 0 0 0 4px var(--orange-light);
+    }
+    .timeline-date {
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--grey-light); margin-bottom: 0.4rem;
+      font-family: var(--font-title); font-weight: 700;
+    }
+    .timeline-role {
+      font-family: var(--font-title); font-weight: 800; font-size: 1.25rem;
+      color: var(--petrol); line-height: 1.2; margin-bottom: 0.3rem;
+    }
+    .timeline-org {
+      font-size: 0.9rem; font-weight: 700; color: var(--orange);
+      margin-bottom: 0.75rem; font-family: var(--font-title);
+    }
+    .timeline-desc {
+      font-size: 0.925rem; color: var(--grey-text); line-height: 1.7;
+      max-width: 560px; font-family: var(--font-body);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--petrol);
+      border-top: none;
+      text-align: center;
+    }
+    #contact .section-header { margin-bottom: 3rem; }
+    #contact .section-eyebrow { color: var(--blue-soft); justify-content: center; }
+    #contact .section-eyebrow::before { background: var(--orange); }
+    #contact .section-title { color: var(--white); }
+    #contact .section-title em { color: var(--yellow); }
+    #contact .section-lead { color: rgba(255,255,255,0.6); margin: 1rem auto 0; }
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; max-width: 720px; margin: 0 auto 3rem;
+    }
+    .contact-item {
+      padding: 1.75rem; border: 1px solid rgba(156,195,213,0.25); border-radius: 6px;
+      text-decoration: none; color: var(--white);
+      transition: border-color 0.2s, background 0.2s;
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.05);
+    }
+    .contact-item:hover { border-color: var(--yellow); background: rgba(242,200,17,0.08); }
+    .contact-item-icon { font-size: 1.4rem; }
+    .contact-item-label {
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;
+      font-weight: 700; font-family: var(--font-title); color: var(--blue-soft);
+    }
+    .contact-item-value { font-size: 0.875rem; color: rgba(255,255,255,0.7); font-family: var(--font-body); }
+    .availability {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1.25rem;
+      background: rgba(242,200,17,0.15); color: var(--yellow);
+      border-radius: 100px; font-size: 0.825rem; font-weight: 700;
+      margin-bottom: 3rem; font-family: var(--font-title);
+      border: 1px solid rgba(242,200,17,0.3);
+    }
+    .availability::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--yellow);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 4rem;
+      background: var(--petrol-dark);
+      border-top: 1px solid rgba(156,195,213,0.15);
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.8rem; color: rgba(255,255,255,0.4);
+      font-family: var(--font-body);
+    }
+    footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    footer a:hover { color: var(--yellow); }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.hidden {
+      opacity: 0; transform: translateY(20px);
+    }
+    .fade-in.animating {
+      opacity: 0; transform: translateY(20px);
+    }
+    .fade-in.animating.visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 5rem 1.5rem 3rem; border-right: none; border-bottom: 1px solid rgba(156,195,213,0.2); }
+      .hero-right { padding: 2.5rem 1.5rem; }
+      section { padding: 4rem 1.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-layout { grid-template-columns: 1fr; }
+      .skills-nav { position: static; }
+      .skills-highlight { grid-template-columns: 1fr; }
+      .skill-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; max-width: 360px; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Aurélien Prat<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#realisations">Réalisations</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#parcours">Parcours</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Me contacter</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <span class="hero-eyebrow">Consultant Business Intelligence | Data & Cloud</span>
+      <h1 class="hero-title">
+        Piloter<br />l'entreprise<br />par la <em>donnée.</em>
+      </h1>
+      <p class="hero-subtitle">
+        Fondateur d'APBI, je mets en production des rapports Power BI à forte valeur opérationnelle — finance, production, direction — et accompagne les entreprises dans leur transition vers le cloud Microsoft.
+      </p>
+      <div class="hero-actions">
+        <a href="#realisations" class="btn-primary">Voir mes réalisations</a>
+        <a href="#contact" class="btn-ghost">Prendre contact</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-number">5<span>+</span></div>
+          <div class="stat-label">Ans d'expérience</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">20<span>+</span></div>
+          <div class="stat-label">Projets livrés</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">10<span>+</span></div>
+          <div class="stat-label">Clients accompagnés</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Certifications Microsoft</div>
+        </div>
+      </div>
+      <p class="hero-quote">
+        "Je ne livre pas des tableaux de bord — je livre des outils de décision, calibrés sur les réalités métier de chaque client."
+      </p>
+    </div>
+  </section>
+
+  <!-- RÉALISATIONS -->
+  <section id="realisations">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow">Projets sélectionnés</span>
+      <h2 class="section-title">Réalisations <em>clients</em></h2>
+      <p class="section-lead">Des missions concrètes, avec des résultats mesurables. Chaque projet reflète une approche rigoureuse de la donnée.</p>
+    </div>
+    <div class="projects-grid fade-in">
+      <div class="project-card">
+        <div class="project-sector">Secteur · Finance</div>
+        <h3 class="project-title">Reporting financier consolidé</h3>
+        <p class="project-desc">Conception du modèle sémantique et mise en production d'un tableau de bord de suivi budgétaire multi-entités, directement exploitable par la direction financière sans intermédiaire technique.</p>
+        <div class="project-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">DAX</span>
+          <span class="tag">SQL Server</span>
+          <span class="tag">Modélisation étoile</span>
+        </div>
+        <div class="project-result">
+          <strong>Impact :</strong> Reporting mensuel ramené de 3 jours à 2 heures, zéro retraitement manuel.
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-sector">Secteur · Industrie / Production</div>
+        <h3 class="project-title">Suivi de production temps réel</h3>
+        <p class="project-desc">Mise en place d'un pipeline de données depuis l'ERP et déploiement d'un dashboard opérationnel pour piloter les KPIs de production — cadences, écarts, arrêts — en temps réel.</p>
+        <div class="project-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">Power Query</span>
+          <span class="tag">SQL Server</span>
+          <span class="tag">ETL</span>
+        </div>
+        <div class="project-result">
+          <strong>Impact :</strong> Détection des écarts en temps réel, réduction des délais de décision opérationnelle.
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-sector">Secteur · Multi-secteurs</div>
+        <h3 class="project-title">Structuration & gouvernance BI</h3>
+        <p class="project-desc">Audit des rapports existants, refonte des modèles de données, documentation des indicateurs et mise en place d'une gouvernance Power BI Service pour des équipes de 10 à 50 utilisateurs.</p>
+        <div class="project-tags">
+          <span class="tag">Power BI Service</span>
+          <span class="tag">DAX</span>
+          <span class="tag">Data modeling</span>
+          <span class="tag">Documentation</span>
+        </div>
+        <div class="project-result">
+          <strong>Impact :</strong> Fiabilisation des données, adoption utilisateur améliorée, référentiel d'indicateurs partagé.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPÉTENCES -->
+  <section id="competences">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow">Expertise technique</span>
+      <h2 class="section-title">Mes <em>compétences</em></h2>
+      <p class="section-lead">Un profil ancré dans Power BI et la mise en production de rapports métier, avec une montée en compétences active sur l'écosystème Azure et Microsoft Fabric.</p>
+    </div>
+    <div class="skills-layout">
+      <div class="skills-nav fade-in">
+        <div class="skill-category">
+          <div class="skill-cat-title">Visualisation & BI</div>
+          <ul class="skill-list">
+            <li>Power BI <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span></span></li>
+            <li>DAX <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span></span></li>
+            <li>Power Query (M) <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span></span></li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-title">Data & SQL</div>
+          <ul class="skill-list">
+            <li>SQL Server <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span></span></li>
+            <li>Modélisation dimensionnelle <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span></span></li>
+            <li>T-SQL / Stored Procs <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span></span></li>
+          </ul>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-title">Cloud & Data Engineering</div>
+          <ul class="skill-list">
+            <li>Microsoft Fabric <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></li>
+            <li>Azure Data Factory <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></li>
+            <li>Azure Synapse / Lakehouse <span class="skill-level"><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="skills-highlight fade-in">
+        <div class="skill-card featured">
+          <div>
+            <div class="skill-card-icon">📊</div>
+            <div class="skill-card-title">Power BI — Expertise avancée</div>
+            <div class="skill-card-desc">Modélisation sémantique, DAX avancé, développement de rapports complexes, gouvernance Power BI Service. Mon cœur de métier depuis plusieurs années, couvrant l'ensemble de la chaîne : de la connexion aux sources jusqu'au déploiement en production.</div>
+          </div>
+          <div>
+            <div class="skill-card-icon">🏗️</div>
+            <div class="skill-card-title">Architecture Medallion & Lakehouse</div>
+            <div class="skill-card-desc">Conception d'architectures de données en couches Bronze / Silver / Gold sur Azure et Microsoft Fabric. Connaissance approfondie des patterns de migration depuis SQL Server vers le cloud Microsoft.</div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-icon">🗄️</div>
+          <div class="skill-card-title">SQL Server & Modélisation</div>
+          <div class="skill-card-desc">Conception de schémas en étoile, optimisation de requêtes, écriture et audit de procédures stockées complexes.</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-icon">☁️</div>
+          <div class="skill-card-title">Microsoft Fabric — En formation</div>
+          <div class="skill-card-desc">Montée en compétences active sur Fabric : Lakehouse, Dataflows Gen2, pipelines, et couche sémantique unifiée.</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-icon">🔄</div>
+          <div class="skill-card-title">ETL & Intégration</div>
+          <div class="skill-card-desc">Power Query, Azure Data Factory, conception de pipelines d'ingestion robustes depuis sources hétérogènes.</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-icon">🧩</div>
+          <div class="skill-card-title">Conseil & accompagnement</div>
+          <div class="skill-card-desc">Cadrage projet, formation utilisateurs, documentation technique, communication avec les métiers.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARCOURS -->
+  <section id="parcours">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow">Trajectoire professionnelle</span>
+      <h2 class="section-title">Mon <em>parcours</em></h2>
+    </div>
+    <div class="timeline fade-in">
+      <div class="timeline-item current">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2023 — Aujourd'hui</div>
+        <div class="timeline-role">Fondateur & Consultant BI Freelance</div>
+        <div class="timeline-org">APBI</div>
+        <div class="timeline-desc">
+          Création d'APBI, structure freelance dédiée au conseil en Business Intelligence. Missions de mise en production de rapports Power BI en finance et en production industrielle. Formation active en Data Engineering sur Azure et Microsoft Fabric en parallèle des missions clients.
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">20XX — 20XX</div>
+        <div class="timeline-role">Consultant BI / Data Analyst</div>
+        <div class="timeline-org">À compléter</div>
+        <div class="timeline-desc">
+          [Décris ici tes expériences précédentes — entreprise, secteur, périmètre de ta mission]
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Formation</div>
+        <div class="timeline-role">Diplôme / Formation initiale</div>
+        <div class="timeline-org">À compléter</div>
+        <div class="timeline-desc">
+          [Diplôme, école, spécialisation]
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow">Travaillons ensemble</span>
+      <h2 class="section-title">Vous avez un <em>projet</em> ?</h2>
+      <p class="section-lead">Je suis disponible pour des missions freelance en BI, Data Engineering et conseil data sur Azure et Microsoft Fabric.</p>
+    </div>
+    <div class="fade-in">
+      <div class="availability">Disponible pour une nouvelle mission</div>
+    </div>
+    <div class="contact-grid fade-in">
+      <a href="/cdn-cgi/l/email-protection#462736242f6825292835332a3227283206212b272f2a6825292b" class="contact-item">
+        <span class="contact-item-icon">✉️</span>
+        <span class="contact-item-label">Email</span>
+        <span class="contact-item-value"><span class="__cf_email__" data-cfemail="5b3a2b393275383435282e372f3a352f1b3c363a323775383436">[email&#160;protected]</span></span>
+      </a>
+      <a href="https://linkedin.com/in/votreprofil" target="_blank" class="contact-item">
+        <span class="contact-item-icon">💼</span>
+        <span class="contact-item-label">LinkedIn</span>
+        <span class="contact-item-value">linkedin.com/in/…</span>
+      </a>
+      <a href="#" class="contact-item">
+        <span class="contact-item-icon">📍</span>
+        <span class="contact-item-label">Localisation</span>
+        <span class="contact-item-value">France — Remote</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2025 APBI — Aurélien Prat. Tous droits réservés.</span>
+    <span>Consultant Business Intelligence · Data & Cloud · France</span>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Animate on scroll — elements visible by default, animated if JS runs
+    if ('IntersectionObserver' in window) {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        el.classList.add('animating');
+      });
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            const children = e.target.querySelectorAll('.project-card, .skill-card, .timeline-item');
+            children.forEach((child, i) => {
+              child.style.transitionDelay = `${i * 0.08}s`;
+              child.classList.add('animating');
+              setTimeout(() => child.classList.add('visible'), i * 80);
+            });
+          }
+        });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    }
+
+    // Active nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--yellow)' : '';
+      });
+    });
+  </script>
+</html>
