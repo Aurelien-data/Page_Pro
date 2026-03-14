@@ -163,18 +163,24 @@
       margin-bottom: 2rem;
     }
     .stat {
-      padding: 2rem;
+      padding: 1.5rem;
       border-right: 1px solid rgba(156, 195, 213, 0.15);
       border-bottom: 1px solid rgba(156, 195, 213, 0.15);
     }
     .stat:nth-child(2), .stat:nth-child(4) { border-right: none; }
     .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; }
     .stat-number {
-      font-family: var(--font-title); font-weight: 800; font-size: 2.5rem;
-      color: var(--white); line-height: 1; margin-bottom: 0.25rem;
+      font-size: 1.5rem; line-height: 1; margin-bottom: 0.5rem;
     }
-    .stat-number span { color: var(--yellow); }
-    .stat-label { font-size: 0.75rem; color: var(--blue-soft); letter-spacing: 0.06em; text-transform: uppercase; font-family: var(--font-body); }
+    .stat-label {
+      font-size: 0.78rem; color: var(--yellow); letter-spacing: 0.06em;
+      text-transform: uppercase; font-family: var(--font-title);
+      font-weight: 700; margin-bottom: 0.35rem;
+    }
+    .stat-desc {
+      font-size: 0.8rem; color: rgba(255,255,255,0.5);
+      line-height: 1.5; font-family: var(--font-body);
+    }
     .hero-quote {
       font-family: var(--font-body); font-style: italic;
       font-size: 1.05rem; color: rgba(255,255,255,0.6); line-height: 1.7;
@@ -301,6 +307,191 @@
     .skill-card.featured .skill-card-title { color: var(--petrol); }
     .skill-card.featured .skill-card-desc { color: var(--grey-text); }
 
+    /* ── GALERIE ── */
+    .gallery-wrapper {
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(156,195,213,0.2);
+    }
+    .gallery-header {
+      display: flex; align-items: baseline; gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .gallery-label {
+      font-family: var(--font-title); font-weight: 700;
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--blue-soft);
+    }
+    .gallery-sub {
+      font-size: 0.78rem; color: rgba(255,255,255,0.35);
+      font-family: var(--font-body); font-style: italic;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 0.75rem;
+    }
+    .gallery-item {
+      position: relative; overflow: hidden; border-radius: 6px;
+      background: rgba(255,255,255,0.04);
+      cursor: pointer;
+    }
+    .gallery-item--wide {
+      grid-column: span 1;
+    }
+    /* First two items span full width on their row */
+    .gallery-item:nth-child(1),
+    .gallery-item:nth-child(2) {
+      grid-column: span 1;
+    }
+    /* Layout: 2 wide on top row, 3 on bottom */
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    .gallery-item:nth-child(1) { grid-column: 1 / 3; }
+    .gallery-item:nth-child(2) { grid-column: 3 / 4; }
+
+    .gallery-item img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease, filter 0.3s ease;
+      filter: brightness(0.9);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.03);
+      filter: brightness(1.05);
+    }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 0.6rem 0.9rem;
+      background: linear-gradient(transparent, rgba(10,82,117,0.9));
+      font-size: 0.75rem; font-family: var(--font-title);
+      font-weight: 600; color: rgba(255,255,255,0.9);
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .gallery-item:hover .gallery-caption { opacity: 1; }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none; position: fixed;
+      inset: 0; z-index: 999;
+      background: rgba(7, 26, 40, 0.96);
+      backdrop-filter: blur(8px);
+      align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+    .lightbox.active { display: flex; flex-direction: column; gap: 1rem; }
+    .lightbox img {
+      max-width: 90vw; max-height: 80vh;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      object-fit: contain;
+    }
+    .lightbox-caption {
+      font-size: 0.85rem; color: rgba(255,255,255,0.6);
+      font-family: var(--font-body); text-align: center;
+    }
+    .lightbox-close {
+      position: absolute; top: 1.5rem; right: 2rem;
+      font-size: 1.5rem; color: rgba(255,255,255,0.5);
+      cursor: pointer; transition: color 0.2s;
+    }
+    .lightbox-close:hover { color: var(--yellow); }
+
+    /* ── OFFRES ── */
+    #offres { background: var(--off-white); }
+    .offres-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .offre-card {
+      background: var(--white); border: 1px solid var(--grey-rule);
+      border-radius: 10px; padding: 2.5rem;
+      display: flex; flex-direction: column; gap: 1.5rem;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .offre-card:hover {
+      border-color: var(--orange);
+      box-shadow: 0 8px 32px rgba(237,125,49,0.08);
+    }
+    .offre-header {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+    }
+    .offre-icon { font-size: 2rem; flex-shrink: 0; margin-top: 0.15rem; }
+    .offre-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--orange);
+      font-family: var(--font-title); margin-bottom: 0.25rem;
+    }
+    .offre-title {
+      font-family: var(--font-title); font-weight: 800;
+      font-size: 1.3rem; color: var(--petrol); line-height: 1.15;
+      margin-bottom: 0.35rem;
+    }
+    .offre-tagline {
+      font-size: 0.875rem; color: var(--grey-text); font-style: italic;
+      font-family: var(--font-body);
+    }
+    .offre-desc {
+      font-size: 0.9rem; color: var(--grey-text); line-height: 1.7;
+      font-family: var(--font-body);
+    }
+    .offre-packs {
+      display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .offre-pack {
+      padding: 1rem 1.25rem;
+      background: var(--blue-bg); border-radius: 6px;
+      border-left: 3px solid var(--petrol);
+    }
+    .offre-pack-option {
+      background: var(--yellow-light);
+      border-left-color: var(--yellow);
+    }
+    .offre-pack-name {
+      font-family: var(--font-title); font-weight: 700;
+      font-size: 0.875rem; color: var(--petrol); margin-bottom: 0.2rem;
+    }
+    .offre-pack-option .offre-pack-name { color: #8a6d00; }
+    .offre-pack-desc {
+      font-size: 0.8rem; color: var(--grey-text);
+      font-family: var(--font-body); margin-bottom: 0.4rem;
+    }
+    .offre-pack-meta {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem; color: var(--grey-light);
+      font-family: var(--font-mono);
+    }
+    .offre-price {
+      font-weight: 500; color: var(--petrol);
+      font-family: var(--font-title);
+    }
+    .offre-note {
+      font-size: 0.78rem; color: var(--grey-light);
+      font-style: italic; font-family: var(--font-body);
+      border-top: 1px solid var(--grey-rule); padding-top: 1rem;
+    }
+    .testimonial {
+      max-width: 780px; margin: 0 auto;
+    }
+    .testimonial-inner {
+      background: var(--petrol); border-radius: 10px;
+      padding: 2.5rem 3rem;
+    }
+    .testimonial-quote {
+      font-family: var(--font-body); font-style: italic;
+      font-size: 1.05rem; color: rgba(255,255,255,0.85);
+      line-height: 1.75; margin-bottom: 1.25rem;
+      border-left: 3px solid var(--orange); padding-left: 1.5rem;
+    }
+    .testimonial-author {
+      font-size: 0.85rem; color: var(--blue-soft);
+      font-family: var(--font-title); font-weight: 500;
+      padding-left: 1.5rem;
+    }
+    .testimonial-author strong { color: var(--yellow); }
+
     /* ── PARCOURS ── */
     #parcours { background: var(--blue-bg); }
     .timeline { position: relative; padding-left: 2rem; }
@@ -422,7 +613,11 @@
       .hero-left { padding: 5rem 1.5rem 3rem; border-right: none; border-bottom: 1px solid rgba(156,195,213,0.2); }
       .hero-right { padding: 2.5rem 1.5rem; }
       section { padding: 4rem 1.5rem; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:nth-child(1) { grid-column: 1 / 3; }
+      .gallery-item:nth-child(2) { grid-column: 1 / 3; }
       .projects-grid { grid-template-columns: 1fr; }
+      .offres-grid { grid-template-columns: 1fr; }
       .skills-layout { grid-template-columns: 1fr; }
       .skills-nav { position: static; }
       .skills-highlight { grid-template-columns: 1fr; }
@@ -439,6 +634,7 @@
     <a href="#" class="nav-logo">Aurélien Prat<span>.</span></a>
     <ul class="nav-links">
       <li><a href="#realisations">Réalisations</a></li>
+      <li><a href="#offres">Offres</a></li>
       <li><a href="#competences">Compétences</a></li>
       <li><a href="#parcours">Parcours</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -464,20 +660,24 @@
     <div class="hero-right">
       <div class="hero-stats">
         <div class="stat">
-          <div class="stat-number">5<span>+</span></div>
-          <div class="stat-label">Ans d'expérience</div>
+          <div class="stat-number">⚡</div>
+          <div class="stat-label">Mise en production rapide</div>
+          <div class="stat-desc">Des livrables opérationnels dès les premières semaines</div>
         </div>
         <div class="stat">
-          <div class="stat-number">20<span>+</span></div>
-          <div class="stat-label">Projets livrés</div>
+          <div class="stat-number">🎯</div>
+          <div class="stat-label">Orienté métier</div>
+          <div class="stat-desc">Des dashboards calibrés sur les vrais besoins, pas des vitrines techniques</div>
         </div>
         <div class="stat">
-          <div class="stat-number">10<span>+</span></div>
-          <div class="stat-label">Clients accompagnés</div>
+          <div class="stat-number">🔵</div>
+          <div class="stat-label">Spécialiste Microsoft</div>
+          <div class="stat-desc">Power BI, SQL Server, Microsoft Fabric</div>
         </div>
         <div class="stat">
-          <div class="stat-number">3</div>
-          <div class="stat-label">Certifications Microsoft</div>
+          <div class="stat-number">📐</div>
+          <div class="stat-label">Du rapport au pipeline</div>
+          <div class="stat-desc">BI classique et data engineering cloud</div>
         </div>
       </div>
       <p class="hero-quote">
@@ -495,48 +695,177 @@
     </div>
     <div class="projects-grid fade-in">
       <div class="project-card">
-        <div class="project-sector">Secteur · Finance</div>
-        <h3 class="project-title">Reporting financier consolidé</h3>
-        <p class="project-desc">Conception du modèle sémantique et mise en production d'un tableau de bord de suivi budgétaire multi-entités, directement exploitable par la direction financière sans intermédiaire technique.</p>
+        <div class="project-sector">Secteur · CVC / Industrie — Ervent Aquitaine</div>
+        <h3 class="project-title">Système décisionnel financier complet</h3>
+        <p class="project-desc">Conception de trois modèles en étoile (FACT/DIM), intégration multi-sources via ODBC (Sage, Batigest), HFSQL et Excel. Mise en production d'un rapport Chiffre d'Affaires & SIG avec calcul DSO, matrice des soldes intermédiaires de gestion et logique fiscale 01/04–31/03.</p>
         <div class="project-tags">
           <span class="tag">Power BI</span>
           <span class="tag">DAX</span>
-          <span class="tag">SQL Server</span>
+          <span class="tag">Power Query</span>
+          <span class="tag">ODBC / ERP</span>
           <span class="tag">Modélisation étoile</span>
         </div>
         <div class="project-result">
-          <strong>Impact :</strong> Reporting mensuel ramené de 3 jours à 2 heures, zéro retraitement manuel.
+          <strong>Impact :</strong> Vision consolidée et fiable des données financières — réduction significative du temps de reporting.
         </div>
       </div>
       <div class="project-card">
-        <div class="project-sector">Secteur · Industrie / Production</div>
-        <h3 class="project-title">Suivi de production temps réel</h3>
-        <p class="project-desc">Mise en place d'un pipeline de données depuis l'ERP et déploiement d'un dashboard opérationnel pour piloter les KPIs de production — cadences, écarts, arrêts — en temps réel.</p>
+        <div class="project-sector">Secteur · CVC / Industrie — Ervent Aquitaine</div>
+        <h3 class="project-title">Pilotage de production & charges externes</h3>
+        <p class="project-desc">Rapport de suivi d'avancement des lots (Gaine / Plenum) avec calcul dynamique des taux d'avancement, analyse des retards en jours ouvrés et pilotage des stocks. Rapport Charges Externes avec catégorisation automatique des comptes fournisseurs et détection d'anomalies.</p>
         <div class="project-tags">
           <span class="tag">Power BI</span>
           <span class="tag">Power Query</span>
-          <span class="tag">SQL Server</span>
+          <span class="tag">HFSQL</span>
           <span class="tag">ETL</span>
         </div>
         <div class="project-result">
-          <strong>Impact :</strong> Détection des écarts en temps réel, réduction des délais de décision opérationnelle.
+          <strong>Impact :</strong> Adoption par la Direction & les métiers — amélioration du pilotage opérationnel et montée en maturité data de l'entreprise.
         </div>
       </div>
       <div class="project-card">
-        <div class="project-sector">Secteur · Multi-secteurs</div>
-        <h3 class="project-title">Structuration & gouvernance BI</h3>
-        <p class="project-desc">Audit des rapports existants, refonte des modèles de données, documentation des indicateurs et mise en place d'une gouvernance Power BI Service pour des équipes de 10 à 50 utilisateurs.</p>
+        <div class="project-sector">Projet Personnel — En cours</div>
+        <h3 class="project-title">Chess.com Analytics — App Streamlit</h3>
+        <p class="project-desc">Pipeline Python complet (API REST Chess.com, parsing PGN, feature engineering, déduplication) alimentant une application Streamlit publique. L'objectif : permettre à n'importe quel joueur Chess.com de visualiser ses performances (ELO, winrate, cadence, ouvertures) et d'explorer des modèles ML pour l'analyse prédictive.</p>
         <div class="project-tags">
-          <span class="tag">Power BI Service</span>
-          <span class="tag">DAX</span>
-          <span class="tag">Data modeling</span>
-          <span class="tag">Documentation</span>
+          <span class="tag">Python</span>
+          <span class="tag">Streamlit</span>
+          <span class="tag">API REST</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">GitHub</span>
         </div>
         <div class="project-result">
-          <strong>Impact :</strong> Fiabilisation des données, adoption utilisateur améliorée, référentiel d'indicateurs partagé.
+          <strong>Objectif :</strong> Application publique accessible à tous les joueurs Chess.com — maîtrise de la chaîne complète de la donnée brute à l'app déployée.
         </div>
       </div>
     </div>
+
+    <!-- GALERIE -->
+    <div class="gallery-wrapper fade-in">
+      <div class="gallery-header">
+        <span class="gallery-label">Aperçu des rapports Power BI</span>
+        <span class="gallery-sub">Cliquez sur une image pour l'agrandir</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item gallery-item--wide">
+          <img src="CE Synthèse N_N-1_N-2.png" alt="Charges Externes — Synthèse N/N-1/N-2" loading="lazy" onclick="openLightbox(this)" />
+          <div class="gallery-caption">Charges Externes — Synthèse N / N-1 / N-2</div>
+        </div>
+        <div class="gallery-item gallery-item--wide">
+          <img src="SiG & Charges Externes.png" alt="SIG & Charges Externes" loading="lazy" onclick="openLightbox(this)" />
+          <div class="gallery-caption">SIG & Charges Externes</div>
+        </div>
+        <div class="gallery-item">
+          <img src="CA Fourni vs Fourni-Pose.png" alt="CA Fourni vs Fourni-Pose" loading="lazy" onclick="openLightbox(this)" />
+          <div class="gallery-caption">CA — Fourni vs Fourni-Pose</div>
+        </div>
+        <div class="gallery-item">
+          <img src="CA par Bureaux.png" alt="CA par Bureaux" loading="lazy" onclick="openLightbox(this)" />
+          <div class="gallery-caption">CA par Bureaux</div>
+        </div>
+        <div class="gallery-item">
+          <img src="DSO.png" alt="DSO — Suivi des créances" loading="lazy" onclick="openLightbox(this)" />
+          <div class="gallery-caption">DSO — Suivi des créances</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+      <div class="lightbox-close">✕</div>
+      <img id="lightbox-img" src="" alt="" />
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
+  </section>
+
+  <!-- OFFRES -->
+  <section id="offres">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow">Ce que je propose</span>
+      <h2 class="section-title">Mes <em>offres</em></h2>
+      <p class="section-lead">Des solutions packagées, claires et orientées résultats — adaptées aux PME qui veulent piloter leur activité sur des données fiables.</p>
+    </div>
+
+    <div class="offres-grid fade-in">
+
+      <!-- OFFRE 1 -->
+      <div class="offre-card">
+        <div class="offre-header">
+          <div class="offre-icon">📊</div>
+          <div>
+            <div class="offre-label">Offre principale</div>
+            <h3 class="offre-title">Power BI Finance</h3>
+            <p class="offre-tagline">Une solution clé en main pour comprendre et anticiper vos résultats.</p>
+          </div>
+        </div>
+        <p class="offre-desc">Transformez vos fichiers comptables (SAGE, Excel, ERP…) en tableaux de bord clairs, automatisés et connectés à votre réalité métier. Vision 360° de votre chiffre d'affaires, charges, rentabilité et SIG en temps réel.</p>
+        <div class="offre-packs">
+          <div class="offre-pack">
+            <div class="offre-pack-name">📈 Pack CA</div>
+            <div class="offre-pack-desc">CA net HT, avoirs, top clients, évolution mensuelle</div>
+            <div class="offre-pack-meta"><span>5–7 jours</span><span class="offre-price">≃ 2 100 € HT</span></div>
+          </div>
+          <div class="offre-pack">
+            <div class="offre-pack-name">📉 Pack CE & SIG</div>
+            <div class="offre-pack-desc">Charges externes, SIG (EBE, RN), ratios CE/CA</div>
+            <div class="offre-pack-meta"><span>7–9 jours</span><span class="offre-price">≃ 2 800 € HT</span></div>
+          </div>
+          <div class="offre-pack offre-pack-option">
+            <div class="offre-pack-name">⚙ Option : Automatisation & formation</div>
+            <div class="offre-pack-desc">Power Automate, actualisation auto, transfert de compétences</div>
+            <div class="offre-pack-meta"><span>3–4 jours</span><span class="offre-price">≃ 1 200 € HT</span></div>
+          </div>
+        </div>
+        <div class="offre-note">Tarification à la journée à partir de 350 € HT. Chaque projet débute par un audit de l'existant.</div>
+      </div>
+
+      <!-- OFFRE 2 -->
+      <div class="offre-card">
+        <div class="offre-header">
+          <div class="offre-icon">🌱</div>
+          <div>
+            <div class="offre-label">Offre spécialisée</div>
+            <h3 class="offre-title">Solution ESG & Scoring CSRD</h3>
+            <p class="offre-tagline">Pilotez vos indicateurs ESG et préparez vos obligations CSRD.</p>
+          </div>
+        </div>
+        <p class="offre-desc">Pipeline Dataiku pour centraliser vos données ESG, score personnalisé basé sur vos enjeux sectoriels, évaluation de la double matérialité conforme CSRD, et tableau de bord Power BI prêt à l'emploi.</p>
+        <div class="offre-packs">
+          <div class="offre-pack">
+            <div class="offre-pack-name">🗂 Forfait mission</div>
+            <div class="offre-pack-desc">Pipeline + scoring ESG + dashboard — périmètre défini</div>
+            <div class="offre-pack-meta"><span>Sur devis</span></div>
+          </div>
+          <div class="offre-pack">
+            <div class="offre-pack-name">🤝 Accompagnement personnalisé</div>
+            <div class="offre-pack-desc">Structuration progressive selon votre maturité ESG</div>
+            <div class="offre-pack-meta"><span>Sur devis</span></div>
+          </div>
+          <div class="offre-pack offre-pack-option">
+            <div class="offre-pack-name">📅 Suivi mensuel</div>
+            <div class="offre-pack-desc">Indicateurs à jour, reporting sécurisé, conformité CSRD</div>
+            <div class="offre-pack-meta"><span>Sur devis</span></div>
+          </div>
+        </div>
+        <div class="offre-note">Diagnostic initial offert — estimation précise, sans surprise.</div>
+      </div>
+
+    </div>
+
+    <!-- TÉMOIGNAGE -->
+    <div class="testimonial fade-in">
+      <div class="testimonial-inner">
+        <div class="testimonial-quote">
+          "Aurélien a structuré l'ensemble de notre environnement data. Nous avions beaucoup de données, mais pas de véritable outil de pilotage. Aujourd'hui, nous avons des outils fiables et automatisés. Notre temps de reporting a été considérablement réduit — 15 heures de retraitement en moins par mois."
+        </div>
+        <div class="testimonial-author">
+          <strong>Ervent Aquitaine</strong> — PME industrielle +50 employés, secteur CVC
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <!-- COMPÉTENCES -->
@@ -551,25 +880,25 @@
         <div class="skill-category">
           <div class="skill-cat-title">Visualisation & BI</div>
           <ul class="skill-list">
-            <li>Power BI <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span></span></li>
-            <li>DAX <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span></span></li>
+            <li>Power BI <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span></span></li>
             <li>Power Query (M) <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span></span></li>
+            <li>DAX <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span></span></li>
           </ul>
         </div>
         <div class="skill-category">
           <div class="skill-cat-title">Data & SQL</div>
           <ul class="skill-list">
-            <li>SQL Server <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span></span></li>
-            <li>Modélisation dimensionnelle <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span></span></li>
-            <li>T-SQL / Stored Procs <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span></span></li>
+            <li>Python (Pandas, NumPy) <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span></span></li>
+            <li>SQL / SQL Server <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span></span></li>
+            <li>Dataiku DSS <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span></span></li>
           </ul>
         </div>
         <div class="skill-category">
           <div class="skill-cat-title">Cloud & Data Engineering</div>
           <ul class="skill-list">
             <li>Microsoft Fabric <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></li>
-            <li>Azure Data Factory <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></li>
-            <li>Azure Synapse / Lakehouse <span class="skill-level"><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></li>
+            <li>Azure (concepts & pratique) <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></li>
+            <li>Git & GitHub <span class="skill-level"><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span><span class="dot"></span></span></li>
           </ul>
         </div>
       </div>
@@ -577,34 +906,34 @@
         <div class="skill-card featured">
           <div>
             <div class="skill-card-icon">📊</div>
-            <div class="skill-card-title">Power BI — Expertise avancée</div>
-            <div class="skill-card-desc">Modélisation sémantique, DAX avancé, développement de rapports complexes, gouvernance Power BI Service. Mon cœur de métier depuis plusieurs années, couvrant l'ensemble de la chaîne : de la connexion aux sources jusqu'au déploiement en production.</div>
+            <div class="skill-card-title">Power BI & Power Query — Cœur de métier</div>
+            <div class="skill-card-desc">Modélisation sémantique en étoile, DAX intermédiaire à avancé, transformations complexes en Power Query (M). Mise en production de rapports opérationnels pour la finance et la production industrielle.</div>
           </div>
           <div>
-            <div class="skill-card-icon">🏗️</div>
-            <div class="skill-card-title">Architecture Medallion & Lakehouse</div>
-            <div class="skill-card-desc">Conception d'architectures de données en couches Bronze / Silver / Gold sur Azure et Microsoft Fabric. Connaissance approfondie des patterns de migration depuis SQL Server vers le cloud Microsoft.</div>
+            <div class="skill-card-icon">☁️</div>
+            <div class="skill-card-title">Microsoft Fabric & Azure — Montée en compétences</div>
+            <div class="skill-card-desc">Formation autodidacte active sur Microsoft Fabric (15 modules Microsoft Learn validés). Maîtrise théorique de l'architecture Medallion Bronze/Silver/Gold, des concepts Lakehouse et des outils Azure — en cours de mise en pratique.</div>
           </div>
         </div>
         <div class="skill-card">
           <div class="skill-card-icon">🗄️</div>
-          <div class="skill-card-title">SQL Server & Modélisation</div>
-          <div class="skill-card-desc">Conception de schémas en étoile, optimisation de requêtes, écriture et audit de procédures stockées complexes.</div>
-        </div>
-        <div class="skill-card">
-          <div class="skill-card-icon">☁️</div>
-          <div class="skill-card-title">Microsoft Fabric — En formation</div>
-          <div class="skill-card-desc">Montée en compétences active sur Fabric : Lakehouse, Dataflows Gen2, pipelines, et couche sémantique unifiée.</div>
+          <div class="skill-card-title">SQL Avancé & Modélisation</div>
+          <div class="skill-card-desc">SQL avancé : CTE, vues, procédures stockées, jointures complexes, agrégations. Modélisation dimensionnelle (schémas en étoile) principalement via Power Query dans l'environnement Power BI.</div>
         </div>
         <div class="skill-card">
           <div class="skill-card-icon">🔄</div>
-          <div class="skill-card-title">ETL & Intégration</div>
-          <div class="skill-card-desc">Power Query, Azure Data Factory, conception de pipelines d'ingestion robustes depuis sources hétérogènes.</div>
+          <div class="skill-card-title">ETL & Pipelines</div>
+          <div class="skill-card-desc">Pipelines de données en Power Query et Dataiku DSS. Intégration multi-sources (ODBC, HFSQL, Excel, ERP). Python pour l'ingestion via API REST et le feature engineering.</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-icon">🤖</div>
+          <div class="skill-card-title">Python & Data Science</div>
+          <div class="skill-card-desc">Pandas, NumPy, Matplotlib, Scikit-Learn. EDA, nettoyage, scoring ESG, modèles ML supervisés. Projet Streamlit en cours de développement.</div>
         </div>
         <div class="skill-card">
           <div class="skill-card-icon">🧩</div>
           <div class="skill-card-title">Conseil & accompagnement</div>
-          <div class="skill-card-desc">Cadrage projet, formation utilisateurs, documentation technique, communication avec les métiers.</div>
+          <div class="skill-card-desc">Cadrage métier, formalisation des besoins, documentation technique, transfert de compétences et formation utilisateurs.</div>
         </div>
       </div>
     </div>
@@ -619,29 +948,38 @@
     <div class="timeline fade-in">
       <div class="timeline-item current">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">2023 — Aujourd'hui</div>
-        <div class="timeline-role">Fondateur & Consultant BI Freelance</div>
-        <div class="timeline-org">APBI</div>
+        <div class="timeline-date">Octobre 2025 — Aujourd'hui</div>
+        <div class="timeline-role">Consultant BI Freelance — Fondateur</div>
+        <div class="timeline-org">APBI Consulting</div>
         <div class="timeline-desc">
-          Création d'APBI, structure freelance dédiée au conseil en Business Intelligence. Missions de mise en production de rapports Power BI en finance et en production industrielle. Formation active en Data Engineering sur Azure et Microsoft Fabric en parallèle des missions clients.
+          Création et déploiement de solutions décisionnelles pour PME. Cadrage métier, architecture data multi-sources, modélisation ETL via Power Query, mise en production de rapports Power BI (finance & production). Formation autodidacte Microsoft Fabric en parallèle — 15 modules validés sur Microsoft Learn.
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">20XX — 20XX</div>
-        <div class="timeline-role">Consultant BI / Data Analyst</div>
-        <div class="timeline-org">À compléter</div>
+        <div class="timeline-date">Avril 2025 — Septembre 2025</div>
+        <div class="timeline-role">Data Analyst BI</div>
+        <div class="timeline-org">Ervent Aquitaine — Secteur CVC</div>
         <div class="timeline-desc">
-          [Décris ici tes expériences précédentes — entreprise, secteur, périmètre de ta mission]
+          Structuration complète du pilotage financier et opérationnel d'une PME industrielle en transition numérique. Conception de 3 modèles en étoile, intégration multi-sources (Sage, Batigest, HFSQL, Excel), mise en production de 3 rapports stratégiques Power BI : Chiffre d'Affaires & SIG, Charges Externes, Production.
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">Formation</div>
-        <div class="timeline-role">Diplôme / Formation initiale</div>
-        <div class="timeline-org">À compléter</div>
+        <div class="timeline-date">Septembre 2024 — Février 2025</div>
+        <div class="timeline-role">Formation Data Analyst</div>
+        <div class="timeline-org">Wild Code School — Bordeaux</div>
         <div class="timeline-desc">
-          [Diplôme, école, spécialisation]
+          Titre Data Analyst RNCP niveau 6 (Bac+3/4). Python (Pandas, NumPy, Scikit-Learn), SQL, Power BI, Dataiku DSS, Machine Learning. Certifications Dataiku Core Designer et CNIL/RGPD obtenues.
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2015 — 2024</div>
+        <div class="timeline-role">Animateur Réseau · Trade Marketing Manager · Attaché Commercial</div>
+        <div class="timeline-org">EssilorLuxottica</div>
+        <div class="timeline-desc">
+          9 ans dans un groupe international — développement réseau (2 ans), pilotage trade marketing (5 ans), développement commercial (2 ans). Forte culture de la donnée métier et de la relation client acquise en environnement exigeant.
         </div>
       </div>
     </div>
@@ -658,20 +996,20 @@
       <div class="availability">Disponible pour une nouvelle mission</div>
     </div>
     <div class="contact-grid fade-in">
-      <a href="/cdn-cgi/l/email-protection#462736242f6825292835332a3227283206212b272f2a6825292b" class="contact-item">
+      <a href="/cdn-cgi/l/email-protection#1f7e6a6d7a73767a716f6d7e6b2c2c2e5f78727e7673317c7072" class="contact-item">
         <span class="contact-item-icon">✉️</span>
         <span class="contact-item-label">Email</span>
-        <span class="contact-item-value"><span class="__cf_email__" data-cfemail="5b3a2b393275383435282e372f3a352f1b3c363a323775383436">[email&#160;protected]</span></span>
+        <span class="contact-item-value"><span class="__cf_email__" data-cfemail="7415010611181d111a04061500474745341319151d185a171b19">[email&#160;protected]</span></span>
       </a>
-      <a href="https://linkedin.com/in/votreprofil" target="_blank" class="contact-item">
+      <a href="https://www.linkedin.com/in/aurelien-prat" target="_blank" class="contact-item">
         <span class="contact-item-icon">💼</span>
         <span class="contact-item-label">LinkedIn</span>
-        <span class="contact-item-value">linkedin.com/in/…</span>
+        <span class="contact-item-value">Aurélien Prat</span>
       </a>
-      <a href="#" class="contact-item">
-        <span class="contact-item-icon">📍</span>
-        <span class="contact-item-label">Localisation</span>
-        <span class="contact-item-value">France — Remote</span>
+      <a href="https://www.malt.fr/profile/aurelienprat?overview" target="_blank" class="contact-item">
+        <span class="contact-item-icon">🟠</span>
+        <span class="contact-item-label">Malt</span>
+        <span class="contact-item-value">malt.fr/profile/aurelienprat</span>
       </a>
     </div>
   </section>
@@ -682,7 +1020,22 @@
     <span>Consultant Business Intelligence · Data & Cloud · France</span>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Lightbox
+    function openLightbox(img) {
+      event.stopPropagation();
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-caption').textContent = img.alt;
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
     // Animate on scroll — elements visible by default, animated if JS runs
     if ('IntersectionObserver' in window) {
       document.querySelectorAll('.fade-in').forEach(el => {
@@ -709,12 +1062,4 @@
     const navLinks = document.querySelectorAll('.nav-links a');
     window.addEventListener('scroll', () => {
       let current = '';
-      sections.forEach(s => {
-        if (window.scrollY >= s.offsetTop - 120) current = s.id;
-      });
-      navLinks.forEach(a => {
-        a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--yellow)' : '';
-      });
-    });
-  </script>
-</html>
+      s
