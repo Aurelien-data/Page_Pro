@@ -350,7 +350,7 @@
       grid-template-columns: 1fr 1fr 1fr;
     }
     .gallery-item:nth-child(1) { grid-column: 1 / 3; }
-    .gallery-item:nth-child(2) { grid-column: 3 / 4; }
+    .gallery-item:nth-child(2) { grid-column: 3 / 3; }
 
     .gallery-item img {
       width: 100%; height: 200px; object-fit: cover;
@@ -880,7 +880,7 @@
                 <div class="carousel-sector">Ervent Aquitaine · CVC / Industrie</div>
                 <h3 class="carousel-title">Rapport CA & Encours clients — Pilotage commercial</h3>
               </div>
-              <span class="carousel-counter">1 / 4</span>
+              <span class="carousel-counter">1 / 3</span>
             </div>
             <ul class="carousel-points">
               <li>Courbe CA mensuel et YTD sur 3 exercices fiscaux (N/N-1/N-2) avec variations € et % — consolidation Sage 100 + Batigest via ODBC</li>
@@ -908,7 +908,7 @@
                 <div class="carousel-sector">Ervent Aquitaine · CVC / Industrie</div>
                 <h3 class="carousel-title">Rapport Charges Externes & SIG — Fiabilisation comptable</h3>
               </div>
-              <span class="carousel-counter">2 / 4</span>
+              <span class="carousel-counter">2 / 3</span>
             </div>
             <ul class="carousel-points">
               <li>Fiabilisation de la donnée comptable Sage 100 avant toute analyse — concordance au centime près avec le grand livre</li>
@@ -936,7 +936,7 @@
                 <div class="carousel-sector">Ervent Aquitaine · CVC / Industrie</div>
                 <h3 class="carousel-title">Rapport Pilotage Production — Suivi des lots en temps réel</h3>
               </div>
-              <span class="carousel-counter">3 / 4</span>
+              <span class="carousel-counter">3 / 3</span>
             </div>
             <ul class="carousel-points">
               <li>Suivi quotidien des lots (Gaine, Plenum) avec calcul du taux d'avancement réel basé sur les étapes effectivement réalisées</li>
@@ -957,32 +957,6 @@
             </div>
           </div>
 
-          <!-- CARTE 4 : Chess.com -->
-          <div class="carousel-card">
-            <div class="carousel-card-header">
-              <div class="carousel-card-meta">
-                <div class="carousel-sector">Projet Personnel — En cours</div>
-                <h3 class="carousel-title">Chess.com Analytics — App Streamlit</h3>
-              </div>
-              <span class="carousel-counter">4 / 4</span>
-            </div>
-            <ul class="carousel-points">
-              <li>Pipeline Python complet : ingestion via API REST Chess.com, parsing PGN, feature engineering et déduplication</li>
-              <li>Application Streamlit publique permettant à tout joueur Chess.com de visualiser ses performances (ELO, winrate, cadence, ouvertures)</li>
-              <li>Exploration de modèles ML supervisés pour l'analyse prédictive des parties</li>
-              <li>Maîtrise de la chaîne complète : de la donnée brute à l'application déployée en production</li>
-            </ul>
-            <div class="carousel-footer">
-              <div class="carousel-tags">
-                <span class="tag">Python</span>
-                <span class="tag">Streamlit</span>
-                <span class="tag">API REST</span>
-                <span class="tag">Machine Learning</span>
-                <span class="tag">GitHub</span>
-              </div>
-              <div class="carousel-result"><strong>Objectif :</strong> App publique accessible à tous les joueurs Chess.com — maîtrise end-to-end de la chaîne data</div>
-            </div>
-          </div>
 
         </div>
       </div>
@@ -990,7 +964,6 @@
         <button class="carousel-btn" id="carouselPrev">&#8592;</button>
         <div class="carousel-dots" id="carouselDots">
           <div class="carousel-dot active"></div>
-          <div class="carousel-dot"></div>
           <div class="carousel-dot"></div>
           <div class="carousel-dot"></div>
         </div>
@@ -1141,22 +1114,25 @@
           <div class="projet-icon">♟️</div>
           <div class="projet-status">En cours</div>
         </div>
-        <h3 class="projet-title">Chess.com Analytics — App Streamlit</h3>
-        <p class="projet-desc">Pipeline Python complet alimentant une application Streamlit publique. Tout joueur Chess.com peut visualiser ses performances et explorer des modèles prédictifs.</p>
+        <h3 class="projet-title">Chess.com Analytics — Data Product</h3>
+        <p class="projet-desc">Pipeline analytique industrialisé : de l'extraction des parties Chess.com (API + PGN) à la production de datasets structurés exploitables dans Power BI — conçu comme un futur Data Product évolutif vers une architecture cloud.</p>
         <ul class="projet-points">
-          <li>Ingestion via API REST Chess.com, parsing PGN, feature engineering et déduplication</li>
-          <li>Visualisation interactive : ELO, winrate, cadence, ouvertures favorites</li>
-          <li>Exploration ML supervisé pour l'analyse prédictive des parties</li>
-          <li>Maîtrise end-to-end : de la donnée brute à l'app déployée en production</li>
+          <li>Ingestion automatisée via API REST Chess.com, parsing PGN, enrichissement ECO (classification des ouvertures), export CSV multi-joueurs</li>
+          <li>KPIs analytiques : Win Rate, ELO progression, performance par cadence et couleur, time efficiency, ouvertures les plus performantes</li>
+          <li>Architecture évolutive : CI/CD GitHub Actions, structure repository propre, roadmap PostgreSQL + Streamlit multi-utilisateurs + cloud Azure</li>
+          <li>Démonstration d'une approche Data Engineering moderne — du script personnel au Data Product industrialisé</li>
         </ul>
         <div class="projet-footer">
           <div class="projet-tags">
             <span class="tag">Python</span>
-            <span class="tag">Streamlit</span>
+            <span class="tag">Pandas</span>
             <span class="tag">API REST</span>
-            <span class="tag">Machine Learning</span>
-            <span class="tag">GitHub</span>
+            <span class="tag">Power BI</span>
+            <span class="tag">CI/CD</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">Streamlit</span>
           </div>
+          <div class="projet-context">Roadmap : PostgreSQL · Azure · App multi-utilisateurs</div>
         </div>
       </div>
 
