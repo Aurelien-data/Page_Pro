@@ -357,6 +357,7 @@
       display: block;
       transition: transform 0.3s ease, filter 0.3s ease;
       filter: brightness(0.9);
+      pointer-events: none;
     }
     .gallery-item:hover img {
       transform: scale(1.03);
@@ -999,10 +1000,10 @@
       <div class="availability">Disponible pour une nouvelle mission</div>
     </div>
     <div class="contact-grid fade-in">
-      <a id="email-link" href="#" class="contact-item">
+      <div id="email-link" class="contact-item" style="cursor:pointer" onclick="var p='apbi.consultant',d='gm'+'ail.com';window.location.href='mai'+'lto:'+p+'@'+d">
         <span class="contact-item-icon">✉️</span>
         <span class="contact-item-label">Email</span>
-        <span class="contact-item-value" id="email-display">apbi.consultant&#64;gmail.com</span>
+        <span class="contact-item-value" id="email-display">Me contacter par email</span>
       </a>
       <a href="https://www.linkedin.com/in/aurelien-prat" target="_blank" class="contact-item">
         <span class="contact-item-icon">💼</span>
@@ -1065,13 +1066,6 @@
       }
     })();
 
-    // Fix email link
-    (function() {
-      var u = 'apbi.consultant';
-      var d = 'gmail.com';
-      var el = document.getElementById('email-link');
-      if (el) el.href = 'mailto:' + u + '@' + d;
-    })();
 
     // Animate on scroll — elements visible by default, animated if JS runs
     if ('IntersectionObserver' in window) {
