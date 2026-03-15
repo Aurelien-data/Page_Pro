@@ -712,6 +712,74 @@
       background: var(--yellow); transform: scale(1.3);
     }
 
+
+    /* ── PROJETS PERSONNELS ── */
+    #projets { background: var(--petrol-dark); }
+    #projets .section-eyebrow { color: var(--blue-soft); }
+    #projets .section-eyebrow::before { background: var(--orange); }
+    #projets .section-title { color: var(--white); }
+    #projets .section-title em { color: var(--yellow); }
+    #projets .section-lead { color: rgba(255,255,255,0.6); }
+    .projets-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    }
+    .projet-card {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(156,195,213,0.2);
+      border-radius: 10px; padding: 2.5rem;
+      display: flex; flex-direction: column; gap: 1.25rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .projet-card:hover {
+      border-color: var(--orange);
+      background: rgba(255,255,255,0.08);
+    }
+    .projet-card-top {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .projet-icon { font-size: 2rem; }
+    .projet-status {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; font-family: var(--font-title);
+      padding: 0.3rem 0.8rem; border-radius: 100px;
+      background: rgba(242,200,17,0.15); color: var(--yellow);
+      border: 1px solid rgba(242,200,17,0.3);
+    }
+    .projet-status--done {
+      background: rgba(156,195,213,0.15); color: var(--blue-soft);
+      border-color: rgba(156,195,213,0.3);
+    }
+    .projet-title {
+      font-family: var(--font-title); font-weight: 800; font-size: 1.2rem;
+      color: var(--white); line-height: 1.25;
+    }
+    .projet-desc {
+      font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.7;
+      font-family: var(--font-body);
+    }
+    .projet-points {
+      list-style: none; display: flex; flex-direction: column; gap: 0.5rem;
+      flex: 1;
+    }
+    .projet-points li {
+      font-size: 0.875rem; color: rgba(255,255,255,0.75);
+      font-family: var(--font-body); line-height: 1.5;
+      padding-left: 1.25rem; position: relative;
+    }
+    .projet-points li::before {
+      content: '→'; position: absolute; left: 0;
+      color: var(--orange); font-size: 0.8rem;
+    }
+    .projet-footer {
+      display: flex; flex-direction: column; gap: 0.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(156,195,213,0.15);
+    }
+    .projet-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .projet-context {
+      font-size: 0.75rem; color: rgba(255,255,255,0.35);
+      font-family: var(--font-body); font-style: italic;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 1.25rem 1.5rem; }
@@ -724,6 +792,7 @@
       .gallery-item:nth-child(1) { grid-column: 1 / 3; }
       .gallery-item:nth-child(2) { grid-column: 1 / 3; }
       .offres-grid { grid-template-columns: 1fr; }
+      .projets-grid { grid-template-columns: 1fr; }
       .skills-layout { grid-template-columns: 1fr; }
       .skills-nav { position: static; }
       .skills-highlight { grid-template-columns: 1fr; }
@@ -741,6 +810,7 @@
     <ul class="nav-links">
       <li><a href="#realisations">Réalisations</a></li>
       <li><a href="#offres">Offres</a></li>
+      <li><a href="#projets">Projets</a></li>
       <li><a href="#competences">Compétences</a></li>
       <li><a href="#parcours">Parcours</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -1053,6 +1123,71 @@
       </div>
     </div>
 
+  </section>
+
+  <!-- PROJETS PERSONNELS -->
+  <section id="projets">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow">Exploration & apprentissage</span>
+      <h2 class="section-title">Projets <em>personnels</em></h2>
+      <p class="section-lead">Des projets menés en autonomie pour explorer de nouvelles techniques, maîtriser la chaîne complète de la donnée et aller au-delà des missions clients.</p>
+    </div>
+
+    <div class="projets-grid fade-in">
+
+      <!-- PROJET 1 : Chess.com -->
+      <div class="projet-card">
+        <div class="projet-card-top">
+          <div class="projet-icon">♟️</div>
+          <div class="projet-status">En cours</div>
+        </div>
+        <h3 class="projet-title">Chess.com Analytics — App Streamlit</h3>
+        <p class="projet-desc">Pipeline Python complet alimentant une application Streamlit publique. Tout joueur Chess.com peut visualiser ses performances et explorer des modèles prédictifs.</p>
+        <ul class="projet-points">
+          <li>Ingestion via API REST Chess.com, parsing PGN, feature engineering et déduplication</li>
+          <li>Visualisation interactive : ELO, winrate, cadence, ouvertures favorites</li>
+          <li>Exploration ML supervisé pour l'analyse prédictive des parties</li>
+          <li>Maîtrise end-to-end : de la donnée brute à l'app déployée en production</li>
+        </ul>
+        <div class="projet-footer">
+          <div class="projet-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">API REST</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag">GitHub</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJET 2 : Vin USA -->
+      <div class="projet-card">
+        <div class="projet-card-top">
+          <div class="projet-icon">🍷</div>
+          <div class="projet-status projet-status--done">Terminé</div>
+        </div>
+        <h3 class="projet-title">Analyse marché du vin aux USA — Conseil en pricing</h3>
+        <p class="projet-desc">Étude de marché complète pour le Domaine des Croix souhaitant exporter sur le marché américain — de l'EDA Python à la recommandation de prix finale.</p>
+        <ul class="projet-points">
+          <li>EDA sur 130 000 références (44 pays, 680 cépages) — corrélations notes/prix, wordcloud NLP sur descriptifs œnologiques</li>
+          <li>Approche en entonnoir : marché global → Pinot Noir → millésime 2016 → concurrence Burgundy US</li>
+          <li>Dashboard Power BI 7 pages : carte géographique mondiale, tableaux croisés, évolution prix/notes Burgundy 2004–2022</li>
+          <li>Recommandation de prix argumentée pour le Domaine des Croix (Corton Les Grèves 2016) — livrable PPT vulgarisé pour client non-technique</li>
+        </ul>
+        <div class="projet-footer">
+          <div class="projet-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">NLP</span>
+            <span class="tag">Power BI</span>
+            <span class="tag">EDA</span>
+            <span class="tag">Storytelling</span>
+          </div>
+          <div class="projet-context">Certification Data Analyst RNCP niv. 6 — Wild Code School</div>
+        </div>
+      </div>
+
+    </div>
   </section>
 
   <!-- COMPÉTENCES -->
