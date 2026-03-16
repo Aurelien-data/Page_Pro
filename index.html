@@ -547,8 +547,8 @@
     #contact .section-title em { color: var(--yellow); }
     #contact .section-lead { color: rgba(255,255,255,0.6); margin: 1rem auto 0; }
     .contact-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem; max-width: 720px; margin: 0 auto 3rem;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem; max-width: 960px; margin: 0 auto 3rem;
     }
     .contact-item {
       padding: 1.75rem; border: 1px solid rgba(156,195,213,0.25); border-radius: 6px;
@@ -797,7 +797,7 @@
       .skills-nav { position: static; }
       .skills-highlight { grid-template-columns: 1fr; }
       .skill-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; max-width: 360px; }
+      .contact-grid { grid-template-columns: 1fr 1fr; max-width: 480px; }
       footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
   </style>
@@ -1294,20 +1294,25 @@
       <div class="availability">Disponible pour une nouvelle mission</div>
     </div>
     <div class="contact-grid fade-in">
-      <div id="email-link" class="contact-item" style="cursor:pointer" onclick="var p='apbi.consultant',d='gm'+'ail.com';window.location.href='mai'+'lto:'+p+'@'+d">
+      <a href="mailto:apbi.consultant@gmail.com" class="contact-item">
         <span class="contact-item-icon">✉️</span>
         <span class="contact-item-label">Email</span>
-        <span class="contact-item-value">Me contacter par email</span>
-      </div>
+        <span class="contact-item-value">apbi.consultant@gmail.com</span>
+      </a>
       <a href="https://www.linkedin.com/in/aurelien-prat" target="_blank" class="contact-item">
-        <span class="contact-item-icon">💼</span>
+        <span class="contact-item-icon"><img src="logo_linkedin.png" alt="LinkedIn" style="width:28px;height:28px;object-fit:contain;" /></span>
         <span class="contact-item-label">LinkedIn</span>
         <span class="contact-item-value">Aurélien Prat</span>
       </a>
       <a href="https://www.malt.fr/profile/aurelienprat?overview" target="_blank" class="contact-item">
-        <span class="contact-item-icon">🟠</span>
+        <span class="contact-item-icon"><img src="logo_malt.png" alt="Malt" style="width:28px;height:28px;object-fit:contain;" /></span>
         <span class="contact-item-label">Malt</span>
         <span class="contact-item-value">malt.fr/profile/aurelienprat</span>
+      </a>
+      <a href="https://github.com/Aurelien-data" target="_blank" class="contact-item">
+        <span class="contact-item-icon"><img src="logo_github.png" alt="GitHub" style="width:28px;height:28px;object-fit:contain;" /></span>
+        <span class="contact-item-label">GitHub</span>
+        <span class="contact-item-value">github.com/Aurelien-data</span>
       </a>
     </div>
   </section>
